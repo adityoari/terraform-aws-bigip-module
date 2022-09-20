@@ -186,6 +186,11 @@ resource "aws_instance" "f5_bigip" {
   instance_type = var.ec2_instance_type
   ami           = data.aws_ami.f5_ami.id
   key_name      = var.ec2_key_name
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens = "required"
+    instance_metadata_tags = "enabled"
+  }
   # availability_zone = 
 
   root_block_device {
